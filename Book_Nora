@@ -1,0 +1,207 @@
+package Library_Nora;
+import java.util.Scanner;
+public class Book_Nora {
+String namebook, authorname, numberbook;
+public Book_Nora(String namebook, String authorname, String
+numberbook) {
+this.namebook = namebook;
+this.authorname = authorname;
+this.numberbook = numberbook;
+}
+}
+class StackByLinkedlist_Nora { // Firstly created a Stack Using 
+Linked list
+static int size=0;
+private class Node_Nora { // A linked list node
+Book_Nora data;
+Node_Nora link; // reference variable Node type
+}
+Node_Nora front, rear;
+Node_Nora top;
+StackByLinkedlist_Nora() { this.top = null;
+this.front = this.rear = null;
+}
+public void push(Book_Nora x) {// insert at the beginning 
+// 1) Add Book details ( name book, author name, number book(unique))
+Node_Nora temp = new Node_Nora(); // create new node 
+temp and allocate memory
+if (isUniquenNumber(x.numberbook.trim())==true) { // 
+check if stack (heap) is full. Then inserting an element would lead to stack 
+overflow
+System.out.print("\n number of book is exit 
+aready ");
+return;
+}
+if (temp == null) {
+System.out.print("\nHeap Overflow");
+return;
+}
+temp.data = x; // initialize data into temp data field
+temp.link = top; // update top reference
+top = temp;
+System.out.print("\n Add successfully");
+}
+public boolean isEmpty() { return top == null; }
+public Book_Nora peek() {
+if (!isEmpty()) { // check for empty stack
+return top.data;
+}
+else {
+System.out.println("Stack is empty");
+return null;
+}
+}
+public void pop(){ // remove at the beginning // 2) Delete 
+any book details by a given book number
+if (top == null) { // check for stack underflow
+System.out.print("\nStack Underflow");
+return;
+}
+top = (top).link; // update the top pointer to point 
+to the next node
+}
+public void deleteByNumberbook(String numberbook){ // remove 
+at the beginning
+if (top == null) { // check for stack underflow
+System.out.print("\nStack Underflow");
+return;
+} 
+Node_Nora temp = top;
+if (temp.data.numberbook.equalsIgnoreCase(numberbook))
+{
+top = temp.link; // Change head
+return;
+}
+while (temp!=null) {
+if(temp.data.numberbook.equalsIgnoreCase(numberbook)) {
+Node_Nora next = temp.link;temp.link =
+next.link;
+}
+temp = temp.link;
+}
+}
+public void updateInfo(Book_Nora ob,Node_Nora temp) { // 3) 
+Update book name or author by providing book number .
+temp.data.authorname=ob.authorname;
+temp.data.namebook=ob.namebook;
+//temp.data.numberbook=ob.numberbook;
+}
+public void UpdatePostion(String numberbook,Book_Nora ob){ //
+if (top == null) { // check for stack underflow
+System.out.print("\nStack Underflow");
+return;
+} 
+Node_Nora temp = top;
+if (temp.data.numberbook.equalsIgnoreCase(numberbook) )
+{
+updateInfo(ob ,temp);
+System.out.print("\n Add successfully");
+System.out.println(" \n update of name book 
+"+numberbook);
+return;
+} 
+ 
+while (temp!=null) {
+if(temp.data.numberbook.equalsIgnoreCase(numberbook)) {
+updateInfo(ob ,temp);
+System.out.println(" update of element 
+"+numberbook);
+}
+temp = temp.link;
+}
+}
+public void display() { // 4) Display all details of book 
+from a book number
+if (top == null) { // check for stack underflow
+System.out.printf("\nStack Underflow"); // 
+exit(1);
+}
+else {
+Node_Nora temp = top;
+System.out.println("\n************** Show 
+***********");
+while (temp != null) {
+System.out.println("Book ==> namebook=" +
+temp.data.namebook + ", authorname=" + temp.data.authorname + ", numberbook=" +
+temp.data.numberbook );
+temp = temp.link; // assign temp link to 
+temp
+}
+}
+}
+public void searchByNumberbook(String namebook){ // remove at 
+the beginning //5) Search book based on name book .
+if (top == null) { // check for stack underflow
+System.out.print("\nStack Underflow");
+return;
+} 
+Node_Nora temp = top;
+if (temp.data.namebook.equalsIgnoreCase(namebook) ) {
+System.out.println(" search of element 
+"+namebook+" "+temp.data.toString());
+return;
+} 
+while (temp!=null) {
+if(temp.data.namebook.equalsIgnoreCase(namebook
+)) {
+System.out.println(" search of name book 
+"+namebook+" "+temp.data.toString());
+}
+temp = temp.link;
+}
+}
+// ) Sort all book in the phone directory ascending based on 
+person first name.
+public void sortList() {
+Node_Nora current = top, index = null; // Node current 
+will point to head
+Book_Nora temp;
+if (top == null) {
+return;
+}
+else {
+while (current != null) { // Node index will 
+point to node next to current
+index = current.link;
+while (index != null) { // If current node's 
+data is greater than index's node data, swap the data between them
+if
+(current.data.namebook.compareTo(index.data.namebook) > 0) {
+temp = current.data;
+current.data = index.data;
+index.data = temp;
+}
+index = index.link;
+}
+current = current.link;
+}
+}
+}
+public boolean isUniquenNumber(String numberbook) {
+if (top == null) {
+return false;
+} 
+Node_Nora temp = top;
+if (temp.data.numberbook.equalsIgnoreCase(numberbook) )
+{
+System.out.println("\n exit already of number 
+book "+numberbook+" "+temp.data.toString());
+return true;
+} 
+while (temp!=null) {
+if(temp.data.numberbook.equalsIgnoreCase(numberbook )) {
+System.out.println(" \n exit already of 
+number book "+numberbook+" "+temp.data.toString());
+return true;
+}
+temp = temp.link;
+}
+return false;
+}
+public void addBookSection(Book_Nora y) {
+if (top == null) {
+System.out.print("\nStack Underflow");
+return;
+} 
+}
+}
