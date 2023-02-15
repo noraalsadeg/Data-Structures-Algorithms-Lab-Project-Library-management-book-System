@@ -1,0 +1,80 @@
+package Library_Nora;
+import java.util.*;
+public class Library_Nora {
+public static void main(String[] args) {
+String namebook, authorname, numberbook;
+Scanner read = new Scanner(System.in);
+StackByLinkedlist_Nora obj = new StackByLinkedlist_Nora ();
+int key = 0;
+while (key != 7) {
+// Displaying menu
+ System.out.println(" Welcome to Nora's 
+Library! ");
+ System.out.println(
+ " Select From The Following Options: 
+");
+ System.out.println(
+ " 
+");
+System.out.println("\n 1)Add book details 
+into the Library.\r\n" + " 2) Remove a book from the 
+Library.\r\n"
++ " 3) Update .\r\n" + " 
+4) Display the entire book.\r\n" + " 5) Search a book based on 
+the name.\r\n"
++ " 6) Sort the entire book 
+ascending.\r\n" + " 7) Exit the program. ");
+key = read.nextInt();
+switch (key) {
+case 1: {
+System.out.println("Enter name of book :");
+namebook = read.next();
+System.out.println("Enter author name of book :");
+authorname = read.next();
+System.out.println("Enter number of book :");
+numberbook = read.next();
+Book_Nora obStudent = new Book_Nora(namebook,
+authorname, numberbook);
+obj.push(obStudent);
+}
+break;
+case 2: {
+System.out.println("Enter number book for delete");
+numberbook = read.next();
+obj.deleteByNumberbook(numberbook);
+}
+break;
+case 3: {
+System.out.println("Enter number of book for updte 
+:");
+numberbook = read.next();
+System.out.println("Enter name of book :");
+namebook = read.next();
+System.out.println("Enter author name of book :");
+authorname = read.next();
+Book_Nora obStudent = new Book_Nora(namebook,
+authorname, numberbook);
+obj.UpdatePostion(numberbook, obStudent);
+}
+break;
+case 4: {
+obj.display();
+}
+break;
+case 5: {
+System.out.println("Enter name of book :");
+namebook = read.next();
+obj.searchByNumberbook(namebook);
+}
+break;
+case 6: {
+obj.sortList();
+obj.display();
+}
+break;
+default:
+break;
+}
+}
+}
+}
